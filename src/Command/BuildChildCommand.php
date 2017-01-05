@@ -33,10 +33,13 @@ class BuildChildCommand extends Command {
                     $nextName = '';
                     if ($branch->getName() == 'master') {
                         $nextName = $this->getNextMasterChild($repo);
+                    } else {
+                        $nextName = $branch->getName().'.'.$this->getNextBranchChild($repo);
                     }
                     $output->writeln('<info>create a new build branch '.$nextName.'...</info>');
 
-                    $repo->push($nextName, $branch->getName());
+                    $repo->createBranch($nextName);
+                    $repo->push('origin', $nextName);
                 } else {
                     $output->writeln('<info>create a new build tag</info>');
                 }
@@ -61,15 +64,20 @@ class BuildChildCommand extends Command {
         return (string) count($versions);
     }
 
-//    private function getNextBranchChild (Repository $repository) {
-//        $versions = [];
-//        $mainVersion = $repository->getMainBranch()
-//                                  ->getName();
-//
-//        foreach ($repository->getBranches(true, true) as $branch) {
-//            preg_match("/".$mainVersion.".([0-9]*)/", $branch, $output_array);
-//        }
-//    }
+    private function getNextBranchChild (Repository $repository) {
+        $versions = [];
+        $mainVersion = $repository->getMainBranch()
+                                  ->getName();
+
+        foreach ($repository->getBranches(true, true) as $branch) {
+            preg_match("/".$mainVersion.".([0-9]*)/", $branch, $output_array);
+            if (count($output_array) > 0) {
+                $versions[intval($output_array[1])] = $output_array[0];
+            }
+        }
+
+        return (string) count($versions);
+    }
 
     private function isChildBranch ($branchName) {
         if ($branchName == 'master') {
