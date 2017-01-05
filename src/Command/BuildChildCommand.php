@@ -79,6 +79,12 @@ class BuildChildCommand extends Command {
         return (string) count($versions);
     }
 
+    private function getNextBranchTag (Repository $repository) {
+        $versions = [];
+        $mainVersion = 0;
+        $secVersion = 0;
+    }
+
     private function isChildBranch ($branchName) {
         if ($branchName == 'master') {
             return true;
