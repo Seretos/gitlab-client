@@ -37,8 +37,7 @@ class BuildChildCommand extends Command {
                     $output->writeln('<info>create a new build branch '.$nextName.'...</info>');
 
                     $repo->createBranch($nextName);
-                    $repo->commit('commit generated branch');
-                    $repo->push();
+                    $repo->checkout($nextName);
                 } else {
                     $output->writeln('<info>create a new build tag</info>');
                 }
