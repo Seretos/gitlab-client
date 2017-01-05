@@ -1,0 +1,21 @@
+{
+  "name": "seretos/gitlab-client",
+  "description": "a client to build gitlab repositories",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Arne von Appen"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.3.0",
+    "symfony/console": "^3.2",
+    "cypresslab/gitelephant": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}

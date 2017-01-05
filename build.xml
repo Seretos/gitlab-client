@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gitlab-client" default="build">
+    <property name="composerUrl" value="http://getcomposer.org/composer.phar"/>
+    <property name="boxUrl" value="https://github.com/box-project/box2/releases/download/2.7.5/box-2.7.5.phar"/>
+    <property name="phpBin" value="php"/>
+
+    <target name="prepare">
+        <get src="${composerUrl}" dest="composer.phar" verbose="true" usetimestamp="true"/>
+
+        <exec executable="${phpBin}">
+            <arg value="composer.phar"/>
+            <arg value="update"/>
+            <arg value="--no-dev"/>
+        </exec>
+    </target>
+
+    <target name="build" depends="prepare">
+        <get src="${boxUrl}" dest="box.phar" verbose="true" usetimestamp="true"/>
+        <exec executable="${phpBin}">
+            <arg value="box.phar"/>
+            <arg value="build"/>
+        </exec>
+    </target>
+</project>

@@ -1,0 +1,18 @@
+{
+  "chmod": "0755",
+  "directories": [
+    "src"
+  ],
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": [
+        "Tests"
+      ],
+      "in": "vendor"
+    }
+  ],
+  "main": "bin/console",
+  "output": "gitlab-client.phar",
+  "stub": true
+}
