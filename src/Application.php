@@ -1,6 +1,7 @@
 <?php
 
 use Command\BuildChildCommand;
+use Command\ProtectBranchCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -29,7 +30,7 @@ class Application extends BaseApplication implements ContainerAwareInterface {
     }
 
     protected function registerCommands () {
-        $this->addCommands([new BuildChildCommand()]);
+        $this->addCommands([new BuildChildCommand(), new ProtectBranchCommand()]);
     }
 
     /**
