@@ -13,6 +13,6 @@
     }
   ],
   "main": "bin/console",
-  "output": "gitlab-client.phar",
+  "output": "build/gitlab-client.phar",
   "stub": true
 }

@@ -7,15 +7,20 @@
       "name": "Arne von Appen"
     }
   ],
-  "minimum-stability": "dev",
   "require": {
     "php": ">=5.3.0",
     "symfony/console": "^3.2",
-    "cypresslab/gitelephant": "^1.1"
+    "cypresslab/gitelephant": "^1.1",
+    "symfony/dependency-injection": "^3.2",
+    "symfony/config": "^3.2",
+    "symfony/yaml": "^3.2"
   },
   "autoload": {
     "psr-4": {
       "": "src/"
     }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
   }
 }

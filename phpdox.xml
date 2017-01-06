@@ -1,0 +1,21 @@
+<phpdox xmlns="http://xml.phpdox.net/config">
+    <project name="gitlab-client" source="./" workdir="build/phpdox/xml">
+        <collector publiconly="false">
+            <include mask="*.php"/>
+            <exclude mask="**Test**"/>
+            <exclude mask="**vendor**"/>
+            <exclude mask="**build**"/>
+        </collector>
+        <generator output="build">
+            <build engine="html" enabled="true" output="phpdox/html">
+                <file extension="html"/>
+            </build>
+            <enrich base="build/logs">
+                <source type="phploc">
+                    <file name="phploc.xml"/>
+                </source>
+            </enrich>
+        </generator>
+    </project>
+</phpdox>
+
