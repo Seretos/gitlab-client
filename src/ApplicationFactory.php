@@ -1,6 +1,6 @@
 <?php
-use GitElephant\Repository;
 use Gitlab\Client;
+use Gitlab\Model\Project;
 
 /**
  * Created by PhpStorm.
@@ -10,13 +10,13 @@ use Gitlab\Client;
  */
 class ApplicationFactory
 {
-    public function createRepository($path)
-    {
-        return new Repository($path, new \GitElephant\GitBinary('git'));
-    }
-
     public function createClient($url)
     {
         return new Client($url);
+    }
+
+    public function loadProject($id, Client $client)
+    {
+        return new Project($id, $client);
     }
 }

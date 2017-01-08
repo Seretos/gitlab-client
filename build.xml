@@ -42,7 +42,9 @@
         <property name="clean.done" value="true"/>
     </target>
 
-    <target name="build" depends="check-phpunit-failure">
+    <target name="test" depends="check-phpunit-failure" description="run the unit tests"/>
+
+    <target name="build" depends="check-phpunit-failure" description="builds the phar file">
         <mkdir dir="${buildDir}"/>
         <get src="${boxUrl}" dest="box.phar" verbose="true" usetimestamp="true"/>
         <exec executable="${phpBin}">

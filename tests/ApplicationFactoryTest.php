@@ -22,9 +22,10 @@ class ApplicationFactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function createRepository()
+    public function loadProject()
     {
-        $this->assertInstanceOf(\GitElephant\Repository::class, $this->factory->createRepository(__DIR__));
+        $mockClient = $this->getMockBuilder(\Gitlab\Client::class)->disableOriginalConstructor()->getMock();
+        $this->assertInstanceOf(\Gitlab\Model\Project::class, $this->factory->loadProject(42, $mockClient));
     }
 
     /**
