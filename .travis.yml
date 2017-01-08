@@ -10,8 +10,8 @@ script:
   - ant test
 after_success:
   - ant statistics
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
+  - https://github.com/satooshi/php-coveralls/releases/download/v1.0.0/coveralls.phar
+  - php coveralls.phar -v
 deploy:
   provider: releases
   api_key:
