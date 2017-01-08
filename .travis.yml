@@ -10,7 +10,7 @@ script:
   - ant test
 after_success:
   - ant statistics
-  - https://github.com/satooshi/php-coveralls/releases/download/v1.0.0/coveralls.phar
+  - https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
   - php coveralls.phar -v
 deploy:
   provider: releases
