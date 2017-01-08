@@ -3,6 +3,9 @@
   "directories": [
     "src"
   ],
+  "files": [
+    "app/config/services.yml"
+  ],
   "finder": [
     {
       "name": "*.php",

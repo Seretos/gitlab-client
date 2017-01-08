@@ -11,56 +11,57 @@ namespace Command;
 
 use GitElephant\Objects\Tag;
 use GitElephant\Repository;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class BuildChildCommand extends Command {
-    protected function configure () {
+class BuildChildCommand extends BaseCommand
+{
+    protected function configure()
+    {
         $this->setName('build:child')
-             ->setDescription('create child branch/tag');
+            ->addOption('name', 't', InputOption::VALUE_REQUIRED, 'the branch or tag name')
+            ->setDescription('create child branch/tag');
     }
 
-    protected function execute (InputInterface $input, OutputInterface $output) {
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         /* @var $factory \ApplicationFactory */
         $factory = $this->getContainer()
-                        ->get('factory');
+            ->get('factory');
         $repo = $factory->createRepository(getcwd());
 
-        try {
-            $branch = $repo->getMainBranch();
+        $branchName = $input->getOption('name');
 
-            if ($this->isBuildBranch($branch->getName())) {
-                $output->writeln('<info>build branch '.$branch->getName().'</info>');
+        if ($this->isBuildBranch($branchName)) {
+            $output->writeln('<info>build branch ' . $branchName . '</info>');
 
-                $currentBranchName = $branch->getName();
-                if ($this->isChildBranch($currentBranchName)) {
-                    if ($currentBranchName == 'master') {
-                        $nextName = $this->getNextMasterChild($repo);
-                    } else {
-                        $nextName = $currentBranchName.'.'.$this->getNextBranchChild($repo);
-                    }
-                    $output->writeln('<info>create a new minor/major branch '.$nextName.'...</info>');
-
-                    $repo->createBranch($nextName);
-                    $repo->push('origin', $nextName);
-                    $repo->checkout($currentBranchName);
+            $currentBranchName = $branchName;
+            if ($this->isChildBranch($currentBranchName)) {
+                if ($currentBranchName == 'master') {
+                    $nextName = $this->getNextMasterChild($repo);
                 } else {
-                    $tagName = 'v'.$branch->getName().'.'.$this->getNextBranchTag($repo);
-                    $output->writeln('<info>create a new release tag '.$tagName.'...</info>');
-                    $repo->createTag($tagName);
-                    $repo->push('origin', $tagName);
+                    $nextName = $currentBranchName . '.' . $this->getNextBranchChild($repo, $currentBranchName);
                 }
+                $output->writeln('<info>create a new minor/major branch ' . $nextName . '...</info>');
+
+                $repo->createBranch($nextName);
+                $repo->push('origin', $nextName);
+                $repo->checkout($currentBranchName);
             } else {
-                $output->writeln('<comment>branch is no minor/major branch: '.$branch->getName().
-                                 '. nothing to doo</comment>');
+                $tagName = 'v' . $branchName . '.' . $this->getNextBranchTag($repo, $branchName);
+                $output->writeln('<info>create a new release tag ' . $tagName . '...</info>');
+                $repo->createTag($tagName);
+                $repo->push('origin', $tagName);
             }
-        } catch (\RuntimeException $e) {
-            $output->writeln('<error>'.$e->getMessage().'</error>');
+        } else {
+            $output->writeln('<comment>branch is no minor/major branch: ' . $branchName .
+                '. nothing to doo</comment>');
         }
     }
 
-    private function getNextMasterChild (Repository $repository) {
+    private function getNextMasterChild(Repository $repository)
+    {
         $versions = [];
         foreach ($repository->getBranches(true, true) as $branch) {
             preg_match("/[0-9]*/", $branch, $output_array);
@@ -69,44 +70,44 @@ class BuildChildCommand extends Command {
             }
         }
 
-        return (string) count($versions);
+        return (string)count($versions);
     }
 
-    private function getNextBranchChild (Repository $repository) {
+    private function getNextBranchChild(Repository $repository, $mainVersion)
+    {
         $versions = [];
-        $mainVersion = $repository->getMainBranch()
-                                  ->getName();
 
         foreach ($repository->getBranches(true, true) as $branch) {
-            preg_match("/".$mainVersion.".([0-9]*)/", $branch, $output_array);
+            preg_match("/" . $mainVersion . ".([0-9]*)/", $branch, $output_array);
             if (count($output_array) > 0) {
                 $versions[intval($output_array[1])] = $output_array[0];
             }
         }
 
-        return (string) count($versions);
+        return (string)count($versions);
     }
 
-    private function getNextBranchTag (Repository $repository) {
+    private function getNextBranchTag(Repository $repository, $branchName)
+    {
         $versions = [];
 
         preg_match("/([0-9]*).([0-9]*)/",
-                   $repository->getMainBranch()
-                              ->getName(),
-                   $output_array);
+            $branchName,
+            $output_array);
         $mainVersion = $output_array[1];
         $secVersion = $output_array[2];
 
         foreach ($repository->getTags() as $tag) {
             /* @var $tag Tag */
-            preg_match("/v".$mainVersion.".".$secVersion.".([0-9]*)/", $tag->getName(), $output_array);
+            preg_match("/v" . $mainVersion . "." . $secVersion . ".([0-9]*)/", $tag->getName(), $output_array);
             $versions[intval($output_array[1])] = $output_array[0];
         }
 
-        return (string) count($versions);
+        return (string)count($versions);
     }
 
-    private function isChildBranch ($branchName) {
+    private function isChildBranch($branchName)
+    {
         if ($branchName == 'master') {
             return true;
         } else {
@@ -119,25 +120,19 @@ class BuildChildCommand extends Command {
         return false;
     }
 
-    private function isBuildBranch ($branchName) {
+    private function isBuildBranch($branchName)
+    {
         $buildBranch = false;
 
         if ($branchName == 'master') {
             $buildBranch = true;
         } else {
             preg_match("/[0-9]*[.[0-9]*]?/", $branchName, $output_array);
-            if ($output_array[0] == $branchName) {
+            if ($output_array[0] == $branchName && $branchName != '') {
                 $buildBranch = true;
             }
         }
 
         return $buildBranch;
-    }
-
-    public function getContainer () {
-        /* @var $app \Application */
-        $app = $this->getApplication();
-
-        return $app->getContainer();
     }
 }
