@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/Seretos/gitlab-client.png)](https://travis-ci.org/Seretos/gitlab-client)
