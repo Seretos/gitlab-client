@@ -8,11 +8,12 @@ install:
   - ant build
 script:
   - ant test
-after_success:
+before_deploy:
   - ant statistics
   - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
   - php coveralls.phar -v
   - tar -zcvf build/phpdox.tar.gz build/phpdox
+  - tar -zcvf build/coverage.tar.gz build/coverage
 deploy:
   provider: releases
   api_key:
@@ -20,5 +21,6 @@ deploy:
   file:
     - build/gitlab-client.phar
     - build/phpdox.tar.gz
+    - build/coverage.tar.gz
   on:
     tags: true
