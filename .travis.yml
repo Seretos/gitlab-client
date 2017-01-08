@@ -17,7 +17,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure:  0abc5fbdfeb5315b2338c4229529ce3f8814c254
+    secure: 7660fedf15499100625c112704fe2cc2ba442926
   file:
     - build/gitlab-client.phar
   skip_cleanup: true
