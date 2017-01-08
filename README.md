@@ -14,7 +14,7 @@ globally install the phar:
 ```php
 wget https://github.com/Seretos/gitlab-client/releases/download/v0.1.0/gitlab-client.phar
 chmod +x gitlab-client.phar
-sudo mv phpunit.phar /usr/local/bin/gitlab-client
+sudo mv gitlab-client.phar /usr/local/bin/gitlab-client
 ```
 
 or add the require to your composer project:
@@ -70,8 +70,8 @@ example usage in gitlab-ci.yml:
 ```yml
 release:
     script:
-        - gitlab-client. build:child --server-url http://$CI_SERVER_NAME/api/v3/ --auth-token yourToken --repository $CI_PROJECT_NAME --branch $CI_BUILD_REF_NAME
         - gitlab-client protect:branch --server-url http://$CI_SERVER_NAME/api/v3/ --auth-token yourToken --repository $CI_PROJECT_NAME --branch $CI_BUILD_REF_NAME
+        - gitlab-client build:child --server-url http://$CI_SERVER_NAME/api/v3/ --auth-token yourToken --repository $CI_PROJECT_NAME --branch $CI_BUILD_REF_NAME
     only:
         - /^(master|\d+(.\d+)?)$/
 ```
