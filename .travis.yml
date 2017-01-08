@@ -4,6 +4,15 @@ php:
   - '7.0'
   - '7.1'
 install:
+  - ant clean
   - ant build
 script:
   - ant test
+deploy:
+  provider: releases
+  api_key:
+    secure: 890f018b3a139f9e2dae6e3f51ee2471766395aa
+  file: build/gitlab-client.phar
+  on:
+    repo: seretos/gitlab-client
+    tags: true
