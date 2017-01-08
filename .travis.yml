@@ -24,3 +24,4 @@ deploy:
   file: build\gitlab-client.phar
   on:
     repo: Seretos/gitlab-client
+    tags: true
