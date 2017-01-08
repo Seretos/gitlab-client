@@ -21,7 +21,7 @@ deploy:
   provider: releases
   api_key:
     secure: NtjMRFym3F3HZJQLlwlDg5prHTDtG4ET9PlnR0NKxqFI6JDb80aWNWeUyjQ2mbHkMcuEFWK/IZ5vAdec8tOxS/+uyXCYHZoTRsmdENj3oO7xsUtc8++lyaF7R1kvUl/w560C5NooEHYzomd+e0rkZHIk9R11xU/u3Z4CXVqjpDCPS1nMCIP+2ZOXFp9KLYa7IRx03++YXPsfFhrImkltimzITRKdY0dR2jOG2iLJ8PERJkzYQwKiAqbMPLDgm+KbCXpBcSx3zEJkzV5dv3ATBTF4oNIFHtCPx7lIDuGJzEHMWTt3LCxH4FQ7v70n2O1mAXjnCPNdHStsXz5gRd+gm30Y8tFsPs2sKALwGYEPjfFH9vz6qCd6jxbr8ZHT/jykoEr/f34CQDmkn648jW5TTgcUXVFQk0QeVGM0HEpDLtIoVh4TJ9VuVXv9hNydSciR5q9MIY/xN7bbIxyjp+mPQNCxXb7cFTb/szeaIIoquKb8RoJS3wOmIfVVT6daqfZu2v9UzhvkYM4ML+0HRcbeJVWLr/pBGLSUKZAMXItoNRBrE+jiwqxSWInjxv9R488N0TAUKjn6lp40mlvQXHE+G9YV3r7v13KIQX5DexumvMlkxrAxZmgMkpiGr56HmN7gDE+1ebJQ+hyGSC6wk6Yj1KHdZtCccwQFA06TeVrqIqk=
-  file: build\gitlab-client.phar
+  file: build/gitlab-client.phar
   on:
     repo: Seretos/gitlab-client
     tags: true
