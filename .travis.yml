@@ -8,6 +8,9 @@ install:
   - ant build
 script:
   - ant test
+after_success:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
 deploy:
   provider: releases
   api_key:
