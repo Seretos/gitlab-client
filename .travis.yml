@@ -20,7 +20,6 @@ deploy:
     secure: 890f018b3a139f9e2dae6e3f51ee2471766395aa
   file:
     - build/gitlab-client.phar
-    - build/phpdox.tar.gz
-    - build/coverage.tar.gz
+  skip_cleanup: true
   on:
     tags: true
