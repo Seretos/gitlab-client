@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/Seretos/gitlab-client.svg?branch=master)](https://travis-ci.org/Seretos/gitlab-client)
+[![Coverage Status](https://coveralls.io/repos/github/Seretos/gitlab-client/badge.svg?branch=master)](https://coveralls.io/github/Seretos/gitlab-client?branch=master)
