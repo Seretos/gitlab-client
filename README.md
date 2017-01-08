@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/Seretos/gitlab-client.png)](https://travis-ci.org/Seretos/gitlab-client)
+[![Build Status](https://travis-ci.org/Seretos/gitlab-client.svg?branch=master)](https://travis-ci.org/Seretos/gitlab-client)
