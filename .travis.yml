@@ -12,13 +12,13 @@ after_success:
   - ant statistics
   - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
   - php coveralls.phar -v
-  - zip -r build/phpdox.zip build/phpdox.zip
+  - tar -zcvf build/phpdox.tar.gz build/phpdox
 deploy:
   provider: releases
   api_key:
     secure: 890f018b3a139f9e2dae6e3f51ee2471766395aa
   file:
-    - build/gitlab-client.phar
+    - build/gitlab-client.tar.gz
     - build/phpdox.zip
   on:
     tags: true
