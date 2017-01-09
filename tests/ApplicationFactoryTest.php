@@ -31,6 +31,17 @@ class ApplicationFactoryTest extends PHPUnit_Framework_TestCase {
     /**
      * @test
      */
+    public function loadGroup () {
+        /* @var $mockClient \Gitlab\Client|PHPUnit_Framework_MockObject_MockObject */
+        $mockClient = $this->getMockBuilder(\Gitlab\Client::class)
+                           ->disableOriginalConstructor()
+                           ->getMock();
+        $this->assertInstanceOf(\Gitlab\Model\Group::class, $this->factory->loadGroup(42, $mockClient));
+    }
+
+    /**
+     * @test
+     */
     public function createClient () {
         $this->assertInstanceOf(\Gitlab\Client::class, $this->factory->createClient('url'));
     }

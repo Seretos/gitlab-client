@@ -1,5 +1,6 @@
 <?php
 use Gitlab\Client;
+use Gitlab\Model\Group;
 use Gitlab\Model\Project;
 
 /**
@@ -15,6 +16,10 @@ class ApplicationFactory {
 
     public function loadProject ($id, Client $client) {
         return new Project($id, $client);
+    }
+
+    public function loadGroup ($id, Client $client) {
+        return new Group($id, $client);
     }
 
     public function createXmlElement ($file) {

@@ -1,6 +1,7 @@
 <?php
 
 use Command\BuildChildCommand;
+use Command\CopyGroupMembersCommand;
 use Command\CoverageCheckCommand;
 use Command\ProtectBranchCommand;
 use Symfony\Component\Console\Application as BaseApplication;
@@ -31,7 +32,10 @@ class Application extends BaseApplication implements ContainerAwareInterface {
     }
 
     protected function registerCommands () {
-        $this->addCommands([new BuildChildCommand(), new ProtectBranchCommand(), new CoverageCheckCommand()]);
+        $this->addCommands([new BuildChildCommand(),
+                            new ProtectBranchCommand(),
+                            new CoverageCheckCommand(),
+                            new CopyGroupMembersCommand()]);
     }
 
     /**

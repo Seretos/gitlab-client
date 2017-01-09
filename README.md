@@ -12,7 +12,7 @@ Installation
 globally install the phar:
 
 ```php
-wget https://github.com/Seretos/gitlab-client/releases/download/v0.1.0/gitlab-client.phar
+wget https://github.com/Seretos/gitlab-client/releases/download/v0.1.1/gitlab-client.phar
 chmod +x gitlab-client.phar
 sudo mv gitlab-client.phar /usr/local/bin/gitlab-client
 ```
@@ -75,6 +75,15 @@ gitlab-client coverage:check --clover-file path/to/your/clover.xml --percentage 
 ```
 
 this command checks, that the code coverage is greater then the given percentage.
+
+copy:members command:
+---------------------
+
+```php
+gitlab-client copy:members --server-url http://your.gitlab.api/api/v3/ --auth-token yourUserToken --source-group yourSourceGroup --destination-group yourDestinationGroup
+```
+
+this command add all users which found in the source group, but not exist in the destination group
 
 example usage in gitlab-ci.yml:
 ------------------------------
