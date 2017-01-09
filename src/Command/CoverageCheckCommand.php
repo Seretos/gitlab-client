@@ -43,7 +43,8 @@ class CoverageCheckCommand extends BaseCommand {
         if ($coverage < $input->getOption('percentage')) {
             $output->writeln('<error>Code coverage is '.$coverage.'%, which is below the accepted '.
                              $input->getOption('percentage').'%</error>');
-            exit(1);
+
+            return 1;
         }
 
         $output->writeln('<info>Code coverage is '.$coverage.'% - OK</info>');

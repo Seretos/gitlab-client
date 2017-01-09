@@ -64,10 +64,26 @@ gitlab-client protect:branch --server-url http://your.gitlab.api/api/v3/ --auth-
 
 this command set the given branch to protected.
 
+coverage:check command:
+-----------------------
+
+example:
+
+```php
+phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml.dist --coverage-clover build/logs/clover.xml
+gitlab-client coverage:check --clover-file path/to/your/clover.xml --percentage 100
+```
+
+this command checks, that the code coverage is greater then the given percentage.
+
 example usage in gitlab-ci.yml:
 ------------------------------
 
 ```yml
+test:
+    script:
+        - phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml.dist --coverage-clover build/logs/clover.xml
+        - gitlab-client coverage:check --clover-file path/to/your/clover.xml --percentage 100
 release:
     script:
         - gitlab-client protect:branch --server-url http://$CI_SERVER_NAME/api/v3/ --auth-token yourToken --repository $CI_PROJECT_NAME --branch $CI_BUILD_REF_NAME
