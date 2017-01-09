@@ -24,7 +24,6 @@
     "bin/gitlab-client"
   ],
   "require-dev": {
-    "phpunit/phpunit": "^5.7",
-    "pdepend/pdepend": "^2.3"
+    "phpunit/phpunit": "^5.7"
   }
 }
