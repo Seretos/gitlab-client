@@ -12,7 +12,7 @@ Installation
 globally install the phar:
 
 ```php
-wget https://github.com/Seretos/gitlab-client/releases/download/v0.1.1/gitlab-client.phar
+wget https://github.com/Seretos/gitlab-client/releases/download/v0.1.2/gitlab-client.phar
 chmod +x gitlab-client.phar
 sudo mv gitlab-client.phar /usr/local/bin/gitlab-client
 ```
