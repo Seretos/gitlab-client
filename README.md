@@ -1,8 +1,8 @@
 gitlab-client
 =============
 
-[![Build Status](https://travis-ci.org/Seretos/gitlab-client.svg?branch=master)](https://travis-ci.org/Seretos/gitlab-client)
-[![Coverage Status](https://coveralls.io/repos/github/Seretos/gitlab-client/badge.svg)](https://coveralls.io/github/Seretos/gitlab-client)
+[![Build Status](https://travis-ci.org/Seretos/gitlab-client.svg?branch=master)](https://travis-ci.org/Seretos/gitlab-client.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Seretos/gitlab-client/badge.svg)](https://coveralls.io/github/Seretos/gitlab-client?branch=master)
 
 this package provide two console commands to automate creation of releases/tags with gitlab
 
