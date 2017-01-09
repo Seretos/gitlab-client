@@ -2,7 +2,7 @@ gitlab-client
 =============
 
 [![Build Status](https://travis-ci.org/Seretos/gitlab-client.svg?branch=master)](https://travis-ci.org/Seretos/gitlab-client.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/Seretos/gitlab-client/badge.svg)](https://coveralls.io/github/Seretos/gitlab-client?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Seretos/gitlab-client/badge.svg?branch=master)](https://coveralls.io/github/Seretos/gitlab-client?branch=master)
 
 this package provide two console commands to automate creation of releases/tags with gitlab
 
@@ -85,6 +85,15 @@ gitlab-client copy:members --server-url http://your.gitlab.api/api/v3/ --auth-to
 
 this command add all users which found in the source group, but not exist in the destination group
 
+replace:readme command:
+----------------------
+
+this command search for the following regex /\?branch\=([\d\w.-]*)/ in the readme.md of your repository-branch and change it to ?branch=yourBranch
+
+```php
+gitlab-client replace:readme --server-url http://your.gitlab.api/api/v3/ --auth-token yourUserToken --repository yourRepositoryName --branch yourBranch
+```
+
 example usage in gitlab-ci.yml:
 ------------------------------
 
@@ -93,6 +102,7 @@ test:
     script:
         - phpunit --bootstrap vendor/autoload.php --configuration phpunit.xml.dist --coverage-clover build/logs/clover.xml
         - gitlab-client coverage:check --clover-file path/to/your/clover.xml --percentage 100
+        - gitlab-client replace:readme --server-url http://$CI_SERVER_NAME/api/v3/ --auth-token yourToken --repository $CI_PROJECT_NAME --branch $CI_BUILD_REF_NAME
 release:
     script:
         - gitlab-client protect:branch --server-url http://$CI_SERVER_NAME/api/v3/ --auth-token yourToken --repository $CI_PROJECT_NAME --branch $CI_BUILD_REF_NAME

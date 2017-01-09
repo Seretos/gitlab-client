@@ -4,6 +4,7 @@ use Command\BuildChildCommand;
 use Command\CopyGroupMembersCommand;
 use Command\CoverageCheckCommand;
 use Command\ProtectBranchCommand;
+use Command\ReadmeReplaceCommand;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -35,7 +36,8 @@ class Application extends BaseApplication implements ContainerAwareInterface {
         $this->addCommands([new BuildChildCommand(),
                             new ProtectBranchCommand(),
                             new CoverageCheckCommand(),
-                            new CopyGroupMembersCommand()]);
+                            new CopyGroupMembersCommand(),
+                            new ReadmeReplaceCommand()]);
     }
 
     /**
