@@ -11,7 +11,7 @@ install:
 - ant build
 script:
 - ant statistics
-- php bin/gitlab-client coverage:check --clover-file build/logs/clover.xml --percentage 94
+- php bin/gitlab-client coverage:check --clover-file build/logs/clover.xml --percentage 93
 - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
 - php coveralls.phar -v
 before_deploy:
