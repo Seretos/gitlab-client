@@ -141,7 +141,7 @@ class BuildChildCommand extends BaseCommand
         if ($branchName == 'master') {
             return true;
         } else {
-            preg_match("/[0-9]*/", $branchName, $output_array);
+            preg_match("/^[0-9]*$/", $branchName, $output_array);
             if ($output_array[0] === $branchName) {
                 return true;
             }
@@ -157,7 +157,7 @@ class BuildChildCommand extends BaseCommand
         if ($branchName == 'master') {
             $buildBranch = true;
         } else {
-            preg_match("/[0-9]*[.[0-9]*]?/", $branchName, $output_array);
+            preg_match("/^[0-9]*[.[0-9]*]?$/", $branchName, $output_array);
             if ($output_array[0] == $branchName && $branchName != '') {
                 $buildBranch = true;
             }
