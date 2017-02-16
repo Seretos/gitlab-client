@@ -39,13 +39,14 @@ class ProtectBranchCommand extends BaseCommand {
         try {
             $project = $client->api('projects')
                               ->show($input->getOption('repository'));
-            if (count($project) != 1) {
-                throw new RuntimeException('cant identify project');
-            }
+//            var_dump($project);
+//            if (count($project) != 1) {
+//                throw new RuntimeException('cant identify project');
+//            }
             $output->writeln('<info>set the branch '.$input->getOption('branch').' in project '.
                              $input->getOption('repository').' to protected</info>');
             $client->api('repositories')
-                   ->protectBranch($project[0]['id'], $input->getOption('branch'));
+                   ->protectBranch($project['id'], $input->getOption('branch'));
         } catch (RuntimeException $e) {
             $output->writeln('<error>'.$e->getMessage().'</error>');
         }

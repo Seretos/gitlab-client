@@ -71,48 +71,48 @@ class ProtectBranchCommandTest extends PHPUnit_Framework_TestCase {
                                  ->getMock();
     }
 
-    /**
-     * @test
-     */
-    public function run_cant_identify () {
-        $this->inputMock->expects($this->any())
-                        ->method('getOption')
-                        ->will($this->returnValueMap([['server-url', 'http://my.domain/api/v3/']
-                                                      ,
-                                                      ['auth-token', 'myToken'],
-                                                      ['repository', 'myRepository']]));
-
-        $projectsMock = $this->getMockBuilder(Projects::class)
-                             ->disableOriginalConstructor()
-                             ->getMock();
-        $projectsMock->expects($this->at(0))
-                     ->method('show')
-                     ->with('myRepository')
-                     ->will($this->returnValue([]));
-
-        $clientMock = $this->getMockBuilder(Client::class)
-                           ->disableOriginalConstructor()
-                           ->getMock();
-        $clientMock->expects($this->at(0))
-                   ->method('authenticate')
-                   ->with('myToken', Client::AUTH_URL_TOKEN);
-
-        $clientMock->expects($this->at(1))
-                   ->method('api')
-                   ->with('projects')
-                   ->will($this->returnValue($projectsMock));
-
-        $this->factoryMock->expects($this->at(0))
-                          ->method('createClient')
-                          ->with('http://my.domain/api/v3/')
-                          ->will($this->returnValue($clientMock));
-
-        $this->outputMock->expects($this->at(0))
-                         ->method('writeln')
-                         ->with('<error>cant identify project</error>');
-
-        $this->command->run($this->inputMock, $this->outputMock);
-    }
+//    /**
+//     * @test
+//     */
+//    public function run_cant_identify () {
+//        $this->inputMock->expects($this->any())
+//                        ->method('getOption')
+//                        ->will($this->returnValueMap([['server-url', 'http://my.domain/api/v3/']
+//                                                      ,
+//                                                      ['auth-token', 'myToken'],
+//                                                      ['repository', 'myRepository']]));
+//
+//        $projectsMock = $this->getMockBuilder(Projects::class)
+//                             ->disableOriginalConstructor()
+//                             ->getMock();
+//        $projectsMock->expects($this->at(0))
+//                     ->method('show')
+//                     ->with('myRepository')
+//                     ->will($this->returnValue([]));
+//
+//        $clientMock = $this->getMockBuilder(Client::class)
+//                           ->disableOriginalConstructor()
+//                           ->getMock();
+//        $clientMock->expects($this->at(0))
+//                   ->method('authenticate')
+//                   ->with('myToken', Client::AUTH_URL_TOKEN);
+//
+//        $clientMock->expects($this->at(1))
+//                   ->method('api')
+//                   ->with('projects')
+//                   ->will($this->returnValue($projectsMock));
+//
+//        $this->factoryMock->expects($this->at(0))
+//                          ->method('createClient')
+//                          ->with('http://my.domain/api/v3/')
+//                          ->will($this->returnValue($clientMock));
+//
+//        $this->outputMock->expects($this->at(0))
+//                         ->method('writeln')
+//                         ->with('<error>cant identify project</error>');
+//
+//        $this->command->run($this->inputMock, $this->outputMock);
+//    }
 
     /**
      * @test
@@ -181,7 +181,7 @@ class ProtectBranchCommandTest extends PHPUnit_Framework_TestCase {
         $projectsMock->expects($this->at(0))
                      ->method('show')
                      ->with('myRepository')
-                     ->will($this->returnValue([0 => ['id' => 42]]));
+                     ->will($this->returnValue(['id' => 42]));
 
         $clientMock = $this->getMockBuilder(Client::class)
                            ->disableOriginalConstructor()

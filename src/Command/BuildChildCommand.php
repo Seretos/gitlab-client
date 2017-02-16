@@ -42,11 +42,11 @@ class BuildChildCommand extends BaseCommand {
         try {
             $projectJson = $client->api('projects')
                                   ->show($input->getOption('repository'));
-            if (count($projectJson) != 1) {
-                throw new RuntimeException('cant identify project');
-            }
+//            if (count($projectJson) != 1) {
+//                throw new RuntimeException('cant identify project');
+//            }
 
-            $project = $factory->loadProject($projectJson[0]['id'], $client);
+            $project = $factory->loadProject($projectJson['id'], $client);
             $branches = $project->branches();
             $tags = $project->tags();
 
@@ -64,7 +64,7 @@ class BuildChildCommand extends BaseCommand {
                     $tagName = 'v'.$branchName.'.'.$this->getNextBranchTag($tags, $branchName);
                     $output->writeln('<info>create a new release tag '.$tagName.'...</info>');
                     $client->api('repositories')
-                           ->createTag($projectJson[0]['id'], $tagName, $branchName);
+                           ->createTag($projectJson['id'], $tagName, $branchName);
                 }
             } else {
                 $output->writeln('<info>branch is no minor/major branch: '.$branchName.'. nothing to doo</info>');
