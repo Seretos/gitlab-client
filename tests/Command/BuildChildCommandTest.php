@@ -81,7 +81,7 @@ class BuildChildCommandTest extends PHPUnit_Framework_TestCase {
                              ->disableOriginalConstructor()
                              ->getMock();
         $projectsMock->expects($this->at(0))
-                     ->method('search')
+                     ->method('show')
                      ->with('myRepository')
                      ->will($this->returnValue([]));
 
@@ -123,7 +123,7 @@ class BuildChildCommandTest extends PHPUnit_Framework_TestCase {
                              ->disableOriginalConstructor()
                              ->getMock();
         $projectsMock->expects($this->at(0))
-                     ->method('search')
+                     ->method('show')
                      ->with('myRepository')
                      ->will($this->returnValue([0 => ['id' => 42]]));
 
@@ -189,7 +189,7 @@ class BuildChildCommandTest extends PHPUnit_Framework_TestCase {
                              ->disableOriginalConstructor()
                              ->getMock();
         $projectsMock->expects($this->at(0))
-                     ->method('search')
+                     ->method('show')
                      ->with('myRepository')
                      ->will($this->returnValue([0 => ['id' => 42]]));
 
@@ -271,7 +271,7 @@ class BuildChildCommandTest extends PHPUnit_Framework_TestCase {
                              ->disableOriginalConstructor()
                              ->getMock();
         $projectsMock->expects($this->at(0))
-                     ->method('search')
+                     ->method('show')
                      ->with('myRepository')
                      ->will($this->returnValue([0 => ['id' => 42]]));
 
@@ -334,7 +334,7 @@ class BuildChildCommandTest extends PHPUnit_Framework_TestCase {
                              ->disableOriginalConstructor()
                              ->getMock();
         $projectsMock->expects($this->at(0))
-                     ->method('search')
+                     ->method('show')
                      ->with('myRepository')
                      ->will($this->returnValue([0 => ['id' => 42]]));
 
@@ -397,7 +397,7 @@ class BuildChildCommandTest extends PHPUnit_Framework_TestCase {
                              ->disableOriginalConstructor()
                              ->getMock();
         $projectsMock->expects($this->at(0))
-                     ->method('search')
+                     ->method('show')
                      ->with('myRepository')
                      ->will($this->returnValue([0 => ['id' => 42]]));
 

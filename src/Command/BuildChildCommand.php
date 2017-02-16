@@ -41,7 +41,7 @@ class BuildChildCommand extends BaseCommand {
 
         try {
             $projectJson = $client->api('projects')
-                                  ->search($input->getOption('repository'));
+                                  ->show($input->getOption('repository'));
             if (count($projectJson) != 1) {
                 throw new RuntimeException('cant identify project');
             }
