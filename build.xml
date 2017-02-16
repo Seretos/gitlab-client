@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="gitlab-client" default="build">
     <property name="composerUrl" value="http://getcomposer.org/composer.phar"/>
-    <property name="phpunitUrl" value="https://phar.phpunit.de/phpunit.phar"/>
+    <property name="phpunitUrl" value="https://phar.phpunit.de/phpunit-5.7.phar"/>
     <property name="phplocUrl" value="https://phar.phpunit.de/phploc.phar"/>
     <property name="phpmdUrl" value="http://static.phpmd.org/php/latest/phpmd.phar"/>
     <property name="phpcdUrl" value="https://phar.phpunit.de/phpcpd.phar"/>
@@ -24,7 +24,6 @@
         <exec executable="${phpBin}">
             <arg value="composer.phar"/>
             <arg value="update"/>
-            <arg value="--no-dev"/>
         </exec>
     </target>
 
